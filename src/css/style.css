@@ -26,6 +26,9 @@ body {
 textarea {
   width: 99%;
   resize: none;
+  font-size: 25px;
+  background-color: #e7e7e7;
+  outline: none;
 }
 
 .keyboard {
@@ -35,7 +38,7 @@ textarea {
   padding: 10px;
   border: 2px solid #000;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: #e7e7e7;
 }
 .row {
   display: flex;
@@ -43,16 +46,16 @@ textarea {
   gap: 8px;
 }
 
-.box {
+.key {
   width: 60px;
   height: 60px;
-  background-color: #96ceb4;
+  background-color: #fff;
   opacity: 0.8;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: #555;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -60,8 +63,29 @@ textarea {
   transition: all 0.2s linear;
 }
 
-.box:hover {
-  opacity: 1;
+.key.active {
+  background-color: #333;
+  color: #fff;
+}
+
+.key:hover {
+  color: #fff;
+  background-color: #555;
+}
+
+.key.remove {
+  animation: box_animation 0.5s linear;
+}
+
+@keyframes box_animation {
+  0% {
+    background-color: #333;
+    color: #fff;
+  }
+  100% {
+    background-color: #fff;
+    color: #333;
+  }
 }
 
 .Backspace {
@@ -104,23 +128,26 @@ textarea {
   width: 486px;
 }
 
-.Backspace,
+/* .Backspace,
 .Tab,
 .CapsLock,
 .ShiftRight,
 .ShiftLeft,
-.Ctrl,
-.Win,
-.Alt,
-.up,
-.down,
-.right,
-.left,
+.ControlLeft,
+.ControlRight,
+.Meta,
+.AltLeft,
+.AltRight,
+.ArrowUp,
+.ArrowRight,
+.ArrowDown,
+.ArrowLeft,
 .Enter,
 .Delete {
-  background-color: #ff6f69;
+  background-color: #333;
   opacity: 0.8;
-}
+  color: #fff;
+} */
 
 .up {
   /* background-image: url('../assets/sort-up-solid.svg'); */

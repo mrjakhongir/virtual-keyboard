@@ -433,7 +433,7 @@ const fifthRow = [
     symbolEngDown: 'Ctrl',
   },
   {
-    keyName: 'MetaLeft',
+    keyName: 'Meta',
     symbolRusDown: 'Win',
     symbolRusUp: 'Win',
     symbolEngDown: 'Win',
@@ -482,7 +482,7 @@ const fifthRow = [
     symbolEngUp: '►',
   },
   {
-    keyName: 'CtrlRight',
+    keyName: 'ControlRight',
     symbolRusDown: 'Ctrl',
     symbolRusUp: 'Ctrl',
     symbolEngDown: 'Ctrl',
@@ -493,7 +493,7 @@ const fifthRow = [
 const firstRowHtml = firstRow
   .map(
     (key) =>
-      `<div class="box ${key.keyName}">
+      `<div class="key ${key.keyName}">
     <span class="rus hidden">
       <span class="caseDown hidden">${key.symbolRusDown}</span>
       <span class="caseUp hidden">${key.symbolRusUp}</span>
@@ -513,7 +513,7 @@ const firstRowHtml = firstRow
 const secondRowHtml = secondRow
   .map(
     (key) =>
-      `<div class="box ${key.keyName}">
+      `<div class="key ${key.keyName}">
     <span class="rus hidden">
       <span class="caseDown hidden">${key.symbolRusDown}</span>
       <span class="caseUp hidden">${key.symbolRusUp}</span>
@@ -532,7 +532,7 @@ const secondRowHtml = secondRow
 const thirdRowHtml = thirdRow
   .map(
     (key) =>
-      `<div class="box ${key.keyName}">
+      `<div class="key ${key.keyName}">
         <span class="rus hidden">
           <span class="caseDown hidden">${key.symbolRusDown}</span>
           <span class="caseUp hidden">${key.symbolRusUp}</span>
@@ -552,7 +552,7 @@ const thirdRowHtml = thirdRow
 const fourthRowHtml = fourthRow
   .map(
     (key) =>
-      `<div class="box ${key.keyName}">
+      `<div class="key ${key.keyName}">
         <span class="rus hidden">
           <span class="caseDown hidden">${key.symbolRusDown}</span>
           <span class="caseUp hidden">${key.symbolRusUp}</span>
@@ -572,7 +572,7 @@ const fourthRowHtml = fourthRow
 const fifthRowHtml = fifthRow
   .map(
     (key) =>
-      `<div class="box ${key.keyName}">
+      `<div class="key ${key.keyName}">
         <span class="rus hidden">
           <span class="caseDown hidden">${key.symbolRusDown}</span>
           <span class="caseUp hidden">${key.symbolRusUp}</span>
@@ -594,7 +594,7 @@ const container = document.body;
 container.innerHTML = `
   <div class="container">
     <h1 class="title">RSS Virtual Keyboard</h1>
-    <div><textarea class="textarea" rows="10" cols=""></textarea></div>
+    <div><textarea class="textarea" rows="5" cols=""></textarea></div>
     <div class="keyboard">
       <div class="row first-row">
       ${firstRowHtml}
@@ -615,7 +615,80 @@ container.innerHTML = `
   `;
 
 // const textArea = document.querySelector('.textarea');
-document.addEventListener('keydown', (e) => {
-  const pressedKey = document.getElementsByClassName(e.code)
-  console.log(pressedKey);
-})
+const keys = document.querySelectorAll('.key');
+const spaceKey = document.querySelector('.Space');
+const shiftLeftKey = document.querySelector('.ShiftLeft');
+const shiftRightKey = document.querySelector('.ShiftRight');
+const capsLockKey = document.querySelector('.CapsLock');
+const altLeftKey = document.querySelector('.AltLeft');
+const altRightKey = document.querySelector('.AltRight');
+// const body = document.querySelector('body');
+
+keys.forEach((key) => {
+  key.setAttribute('keyname', key.innerText);
+  key.setAttribute('upperCaseName', key.innerText.toUpperCase());
+});
+
+window.addEventListener('keydown', (e) => {
+  keys.forEach((key) => {
+    if (
+      e.key === key.getAttribute('keyname') ||
+      e.key === key.getAttribute('upperCaseName')
+    ) {
+      key.classList.add('active');
+    }
+    if (e.code === 'Space') {
+      spaceKey.classList.add('active');
+    }
+    if (e.code === 'ShiftLeft') {
+      shiftRightKey.classList.remove('active');
+    }
+    if (e.code === 'ShiftRight') {
+      shiftLeftKey.classList.remove('active');
+    }
+    if (e.code === 'AltLeft') {
+      altRightKey.classList.remove('active');
+    }
+    if (e.code === 'AltRight') {
+      altLeftKey.classList.remove('active');
+    }
+    if (e.code === 'CapsLock') {
+      capsLockKey.classList.toggle('active');
+    }
+  });
+});
+
+window.addEventListener('keyup', (e) => {
+  keys.forEach((key) => {
+    if (
+      e.key === key.getAttribute('keyname') ||
+      e.key === key.getAttribute('upperCaseName')
+    ) {
+      key.classList.remove('active');
+      key.classList.add('remove');
+    }
+    if (e.code === 'Space') {
+      spaceKey.classList.remove('active');
+      spaceKey.classList.add('remove');
+    }
+    if (e.code === 'ShiftLeft') {
+      shiftLeftKey.classList.remove('active');
+      shiftRightKey.classList.remove('remove');
+    }
+    if (e.code === 'ShiftRight') {
+      shiftRightKey.classList.remove('active');
+      shiftLeftKey.classList.remove('remove');
+    }
+    if (e.code === 'AltLeft') {
+      altLeftKey.classList.remove('active');
+      altRightKey.classList.remove('remove');
+    }
+    if (e.code === 'AltRight') {
+      altRightKey.classList.remove('active');
+      altLeftKey.classList.remove('remove');
+    }
+    setTimeout(() => {
+      key.classList.remove('remove');
+    }, 200)
+  });
+});
