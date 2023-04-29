@@ -1,0 +1,129 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  color: #ff6f69;
+  padding: 0 20px;
+  padding-bottom: 0;
+}
+
+textarea {
+  width: 99%;
+  resize: none;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.box {
+  width: 60px;
+  height: 60px;
+  background-color: #96ceb4;
+  opacity: 0.8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: all 0.2s linear;
+}
+
+.box:hover {
+  opacity: 1;
+}
+
+.Backspace {
+  width: 147px;
+}
+
+/* second row */
+
+.Tab {
+  width: 73px;
+}
+
+.Delete {
+  width: 66px;
+}
+/* third row */
+
+.CapsLock {
+  width: 145px;
+}
+
+.Enter {
+  width: 130px;
+}
+
+/* fourth row */
+
+.ShiftLeft {
+  width: 145px;
+}
+.ShiftRight {
+  width: 130px;
+}
+
+/* fifth row */
+
+.Space {
+  color: #96ceb4;
+  opacity: 0.8;
+  width: 486px;
+}
+
+.Backspace,
+.Tab,
+.CapsLock,
+.ShiftRight,
+.ShiftLeft,
+.Ctrl,
+.Win,
+.Alt,
+.up,
+.down,
+.right,
+.left,
+.Enter,
+.Delete {
+  background-color: #ff6f69;
+  opacity: 0.8;
+}
+
+.up {
+  /* background-image: url('../assets/sort-up-solid.svg'); */
+  background-repeat: no-repeat;
+  background-position: center;
+}
