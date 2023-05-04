@@ -786,8 +786,8 @@ const caseDown = document.querySelectorAll('.caseDown');
 const caseCaps = document.querySelectorAll('.shiftCaps');
 
 function hideCaseDown() {
-  caseDown.forEach((key) => {
-    key.classList.add('hidden');
+  caseDown.forEach((item) => {
+    item.classList.add('hidden');
   });
 }
 
